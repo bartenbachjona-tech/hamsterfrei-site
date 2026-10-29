@@ -3,10 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Hamsterfrei · Claude-Skills, die dir Arbeit abnehmen</title>
+<meta name="description" content="Hamsterfrei-Skills für Claude: einmal kaufen, in dein Claude-Konto laden (auch das kostenlose) und Claude erledigt Seminararbeit-Checks, Verkaufsanzeigen und mehr. Ohne Abo.">
 <link rel="icon" href="hamster.png">
-<title>Anzeigen-Profi</title>
-<meta name="claude:viewport-fit-sides" content="cover">
-<meta name="description" content="Anzeigen-Profi von Hamsterfrei: ein Skill für dein Claude-Konto, der aus Handyfotos fertige Kleinanzeigen- und Vinted-Anzeigen mit Preis-Check macht. 9,90 € einmalig.">
 <style>
 @font-face{font-family:"Fredoka";src:url(fonts/fredoka-latin.woff2) format("woff2");font-weight:300 700;font-display:swap;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
 @font-face{font-family:"Fredoka";src:url(fonts/fredoka-latin-ext.woff2) format("woff2");font-weight:300 700;font-display:swap;unicode-range:U+0100-024F,U+1E00-1EFF,U+20A0-20AB,U+20AD-20CF}
@@ -147,120 +146,179 @@ footer p{font-size:14px;color:var(--muted)}
   .bar.show{display:flex}
 }
 @media (prefers-reduced-motion:reduce){.btn{transition:none}}
+
+/* ---- Mehrseitig: Kopf mit Navigation ---- */
+.top{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.top nav{display:flex;gap:4px 20px;flex-wrap:wrap;font-weight:700;font-size:15px}
+.top nav a{color:var(--ink);text-decoration:none;padding:6px 0;border-bottom:2px solid transparent}
+.top nav a:hover,.top nav a[aria-current="page"]{border-bottom-color:var(--green)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:700;color:var(--green);margin-bottom:16px}
+.badge{display:inline-block;font-size:12px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;background:var(--green);color:var(--on-green);border-radius:999px;padding:3px 10px;vertical-align:middle}
+.badge.soft{background:var(--floor);color:var(--muted)}
+.lead{font-size:19px;color:var(--muted);max-width:36em;margin-top:-8px;margin-bottom:32px}
+
+/* ---- Startseite: Skill-Liste auf der Leinwand ---- */
+.menu{display:grid;gap:12px}
+.menu a{display:grid;grid-template-columns:48px 1fr auto;gap:16px;align-items:center;text-decoration:none;color:var(--ink);background:var(--bg);border-radius:14px;padding:14px 16px;transition:transform .15s}
+.menu a:hover{transform:translateX(4px)}
+.menu .ic{width:48px;height:48px;border-radius:12px;display:grid;place-items:center;background:var(--card);color:var(--green)}
+.menu .ic svg{width:26px;height:26px}
+.menu b{display:block;font-family:var(--display);font-size:18px;font-weight:600;line-height:1.2}
+.menu small{display:block;color:var(--muted);font-size:14px;line-height:1.35}
+.menu .go{font-family:var(--display);font-weight:600;color:var(--green);white-space:nowrap}
+.menu .more{background:transparent;border:2px dashed var(--line);cursor:default}
+.menu .more:hover{transform:none}
+
+/* ---- Produktkarten ---- */
+.cards{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.card{background:var(--floor);border-radius:20px;padding:32px;display:flex;flex-direction:column;gap:16px;min-width:0}
+.card.hot{background:var(--card);border:3px solid var(--ink);box-shadow:var(--shadow)}
+.card h3{font-size:26px}
+.card ul{margin:0;padding-left:20px;display:grid;gap:4px}
+.card .foot{margin-top:auto;display:flex;align-items:center;gap:16px;flex-wrap:wrap;padding-top:8px}
+.card .price{font-size:30px}
+.btn.ghost{background:transparent;color:var(--ink);box-shadow:inset 0 0 0 2px var(--ink)}
+.btn.ghost:hover{background:var(--floor)}
+
+/* ---- Vorteile-Raster ---- */
+.why{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.why div{background:var(--floor);border-radius:16px;padding:20px}
+.why b{display:block;font-family:var(--display);font-size:18px;font-weight:600;margin-bottom:4px}
+.why span{color:var(--muted);font-size:15px}
+
+/* ---- Seminararbeit: Datei-Chip, Befundliste ---- */
+.file{display:inline-flex;align-items:center;gap:10px;background:var(--bg);border-radius:12px;padding:10px 14px;font-weight:700;font-size:15px}
+.file svg{width:22px;height:22px;color:var(--navy)}
+.finds{list-style:none;margin:16px 0 0;padding:16px 0 0;border-top:1px solid var(--line);display:grid;gap:8px;font-size:15px;line-height:1.4}
+.finds li{display:grid;grid-template-columns:14px 1fr;gap:10px}
+.finds li::before{content:"";width:10px;height:10px;border-radius:50%;margin-top:6px;background:var(--dot,#D9822B)}
+.finds li.r{--dot:#C8473A}.finds li.y{--dot:#D9A32B}.finds li.g{--dot:var(--green)}
+.tile.warn{background:#C8473A;color:#fff}
+.tile.warn small{color:#fff;opacity:.9}
+
+/* ---- Modi ---- */
+.modes{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:12px 32px;counter-reset:m}
+.modes li{counter-increment:m;display:grid;grid-template-columns:36px 1fr;gap:14px;align-items:start;padding:12px 0;border-bottom:1px solid var(--line)}
+.modes li::before{content:counter(m);width:36px;height:36px;border-radius:10px;background:var(--floor);color:var(--ink);font-family:var(--display);font-weight:700;display:grid;place-items:center}
+.modes li.star::before{background:var(--green);color:var(--on-green)}
+.modes b{display:block;font-family:var(--display);font-size:18px;font-weight:600}
+.modes span{color:var(--muted);font-size:15px}
+
+/* ---- Coach: Gesprächs-Mock ---- */
+.coach{display:grid;grid-template-columns:5fr 6fr;gap:48px;align-items:center}
+.coach>*{min-width:0}
+.chat{background:var(--card);border:3px solid var(--ink);border-radius:20px;padding:24px;display:grid;gap:12px;box-shadow:var(--shadow)}
+.chat p{border-radius:16px;padding:12px 16px;font-size:15px;line-height:1.45;max-width:90%}
+.chat .who{font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);display:block;margin-bottom:2px}
+.chat .q{background:var(--floor)}
+.chat .a{background:var(--bg);justify-self:end;border:1px solid var(--line)}
+.chat .fb{background:transparent;border:2px dashed var(--green);font-weight:600}
+.ticks{list-style:none;margin:24px 0 0;padding:0;display:grid;gap:12px}
+.ticks li{display:grid;grid-template-columns:24px 1fr;gap:10px}
+.ticks li svg{width:22px;height:22px;color:var(--green);margin-top:2px}
+.ticks b{font-family:var(--display);font-weight:600}
+.callout{margin-top:24px;background:var(--floor);border-left:4px solid var(--green);border-radius:0 12px 12px 0;padding:14px 18px;font-size:15px}
+
+/* ---- Hinweisband ---- */
+.deadline{display:flex;align-items:center;gap:12px;background:var(--ink);color:var(--bg);border-radius:12px;padding:10px 16px;font-weight:700;font-size:15px;margin-bottom:24px;width:fit-content;max-width:100%}
+.deadline svg{width:20px;height:20px;flex:none}
+
+@media (max-width:860px){
+  .cards,.modes,.coach{grid-template-columns:1fr}
+  .why{grid-template-columns:1fr 1fr}
+  .coach{gap:32px}
+  .card{padding:24px}
+  .top nav{font-size:14px;gap:4px 14px}
+  .menu a{grid-template-columns:40px 1fr;padding:12px}
+  .menu .ic{width:40px;height:40px}
+  .menu .go{display:none}
+  .lead{font-size:17px}
+}
+@media (max-width:420px){ .why{grid-template-columns:1fr} }
+@media (prefers-reduced-motion:reduce){.menu a{transition:none}}
 </style>
 </head>
 <body>
-
-<header class="wrap">
-  <a class="brand" href="#top" aria-label="Hamsterfrei"><img src="hamster.png" alt=""><b>Hamster<span>frei</span></b></a>
-</header>
-
+<header class="wrap top"><a class="brand" href="index.html" aria-label="Hamsterfrei – Startseite"><img src="hamster.png" alt=""><b>Hamster<span>frei</span></b></a><nav aria-label="Skills"><a href="index.html" aria-current="page">Alle Skills</a><a href="seminararbeit-profi.html">Seminararbeit</a><a href="anzeigen-profi.html">Anzeigen</a></nav></header>
 <main id="top">
   <div class="wrap hero">
     <div>
-      <h1>Aus deinen Handyfotos wird eine fertige Verkaufsanzeige.</h1>
-      <p class="sub">Der <b>Anzeigen-Profi</b> ist ein Zusatz für den KI-Assistenten Claude: Fotos schicken, bis zu drei Fragen beantworten, Preis und fertigen Anzeigentext kopieren.</p>
-      <div class="buybox" id="kaufen">
+      <h1>Claude-Skills, die dir echte Arbeit abnehmen.</h1>
+      <p class="sub">Ein Skill ist eine Anleitung, die du einmal in dein Claude-Konto lädst, auch ins kostenlose. Ab dann weiß Claude genau, was zu tun ist. Du musst nichts mehr erklären und keine Prompts basteln. Einmal kaufen, kein Abo.</p>
+      <div class="buybox">
         <div class="pricerow">
-          <span class="price">9,90&nbsp;€</span>
-          <a class="btn " href="https://www.checkout-ds24.com/product/757063" rel="noopener" target="_blank">Für 9,90 € kaufen</a>
+          <a class="btn" href="#skills">Skills ansehen</a>
+          <a class="btn ghost" href="#wie">Was ist ein Skill?</a>
         </div>
-        <div class="facts small"><span>einmalig, kein Abo</span><span>läuft in deinem Claude-Konto, auch im kostenlosen</span><span>Sofort-Download · bezahlen über Digistore24</span><span>Gemacht von Jona · Hilfe per Mail</span></div>
+        <div class="facts small"><span>läuft im kostenlosen Claude</span><span>einmalig, kein Abo</span><span>Hilfe per Mail</span></div>
       </div>
     </div>
 
-    <div class="stage" aria-label="Beispiel: von drei Fotos zur fertigen Anzeige">
+    <div class="stage" aria-label="Die Hamsterfrei-Skills">
       <div class="canvas">
-        <div class="flow">
-          <div>
-            <p class="ex">Beispiel</p>
-            <p class="label">Du schickst</p>
-            <div class="send"><div class="thumbs" aria-hidden="true"><svg viewBox="0 0 64 64"><path d="M16 38V30a16 16 0 0 1 32 0v8" fill="none" stroke="#2B2B2E" stroke-width="5" stroke-linecap="round"/><rect x="10" y="34" width="12" height="18" rx="6" fill="#2B2B2E"/><rect x="42" y="34" width="12" height="18" rx="6" fill="#2B2B2E"/></svg><svg viewBox="0 0 64 64"><ellipse cx="32" cy="34" rx="22" ry="16" fill="#3A3A3E"/><path d="M12 32q20 -8 40 0" fill="none" stroke="#8A8A90" stroke-width="2" stroke-dasharray="3 3"/><rect x="28" y="22" width="8" height="5" rx="2" fill="#8A8A90"/></svg><svg viewBox="0 0 64 64"><circle cx="32" cy="32" r="20" fill="#2B2B2E"/><circle cx="32" cy="32" r="11" fill="#55555A"/><path d="M18 22l4 3M44 40l3 3M20 42l3-2" stroke="#9A9AA0" stroke-width="2" stroke-linecap="round"/></svg></div><p class="said">„Will ich loswerden.“</p></div>
-          </div>
-          <div class="arrow" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 16h21M18 8l8 8-8 8"/></svg></div>
-          <div class="result">
-            <p class="label">Du bekommst</p>
-            <p class="title">Sony WH-1000XM4 Noise-Cancelling Kopfhörer schwarz mit Etui</p>
-            <div class="tiles">
-              <div class="tile main"><small>Anzeigenpreis</small><b>115&nbsp;€&nbsp;VB</b></div>
-              <div class="tile"><small>Realistisch</small><b>100–110&nbsp;€</b></div>
-              <div class="tile"><small>Nicht unter</small><b>90&nbsp;€</b></div>
-            </div>
-            <p class="desc">Ich verkaufe meine Sony WH-1000XM4 Bluetooth-Kopfhörer mit Noise Cancelling, gebraucht in gutem Zustand. Bei mir funktioniert alles ohne Probleme, der Akku hält ca. 25 Stunden. Die Ohrpolster sind leicht abgenutzt (siehe Foto). Dabei: Etui, USB-C-Kabel, Klinkenkabel. Versand versichert oder Abholung in München.</p>
-            <div class="chips"><span>Besser auf Kleinanzeigen</span><span>Audio &amp; Hifi</span><span>Zustand: Gut</span><span>+ 6 Antworten auf Käuferfragen</span></div>
-          </div>
-        </div>
+        <p class="ex">Wähl deinen Skill</p>
+        <nav class="menu" aria-label="Skills">
+          <a href="seminararbeit-profi.html"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 9l10-5 10 5-10 5z"/><path d="M6 11v5c3 2 9 2 12 0v-5"/><path d="M22 9v6"/></svg></span><span><b>Seminararbeit-Profi <span class="badge">Neu</span></b><small>Check, Belege und Coach fürs Prüfungsgespräch</small></span><span class="go">9,90&nbsp;€ →</span></a>
+          <a href="anzeigen-profi.html"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12V4h8l10 10-8 8z"/><circle cx="7.5" cy="8.5" r="1.5"/></svg></span><span><b>Anzeigen-Profi</b><small>Aus Handyfotos wird eine fertige Kleinanzeige</small></span><span class="go">9,90&nbsp;€ →</span></a>
+          <a class="more" aria-disabled="true" tabindex="-1"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v8M8 12h8"/></svg></span><span><b>Der nächste Skill</b><small>Folg dem Hamster, dann bist du als Erste:r dabei.</small></span></a>
+        </nav>
       </div>
       <img class="mascot" src="hamster-cut.png" alt="">
     </div>
   </div>
 
-  <section class="wrap" aria-labelledby="paket">
-    <h2 id="paket">Das bekommst du – und das brauchst du</h2>
-    <div class="pack">
-      <div>
-        <h3>Das bekommst du</h3>
-        <ul>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M12 11v6M9 14l3 3 3-3"/></svg><div><b>Anzeigen-Profi (ZIP-Datei)</b><span>Einmal in dein Claude-Konto hochladen, danach so oft nutzen, wie du willst.</span></div></li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h4"/></svg><div><b>Anleitung (PDF)</b><span>Schritt für Schritt, in etwa zwei Minuten eingerichtet.</span></div></li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 12l3 3 5-6"/></svg><div><b>Damit bekommst du für jeden Gegenstand</b><span>Drei Preise, fertigen Text, Kategorie, Plattform-Tipp und Antworten auf „Letzter Preis?“.</span></div></li>
-        </ul>
-      </div>
-      <div>
-        <h3>Du brauchst</h3>
-        <ul>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg><div><b>Ein Claude-Konto</b><span>Auf claude.ai, das kostenlose reicht. Einrichten am besten am Computer im Browser.</span></div></li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="7" width="20" height="10" rx="5"/><circle cx="16" cy="12" r="3"/></svg><div><b>Eine Einstellung</b><span>„Dateien erstellen und bearbeiten“ einmal einschalten – die Anleitung zeigt, wo.</span></div></li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h3l2-3h6l2 3h3a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z"/><circle cx="12" cy="14" r="4"/></svg><div><b>3 bis 8 Fotos</b><span>Bei Tageslicht vom Handy. Ist die Websuche an, prüft Claude echte Vergleichspreise.</span></div></li>
-        </ul>
-      </div>
+  <section class="wrap" id="skills" aria-labelledby="alle">
+    <h2 id="alle">Alle Skills</h2>
+    <div class="cards">
+      <article class="card hot">
+        <p><span class="badge">Neu · Abgabe-Saison</span></p>
+        <h3>Seminararbeit-Profi</h3>
+        <p>Für die W-Seminararbeit in Bayern und für jede Facharbeit. Er prüft Fußnoten, Formalia, Plagiat und Stil, baut deine Quellenbelege und übt mit dir das Prüfungsgespräch.</p>
+        <ul class="small"><li>Endcheck mit Fundstellen</li><li>Beleg-PDF aus deinen Screenshots</li><li>Probe-Prüfung mit Auswertung</li></ul>
+        <div class="foot"><span class="price">9,90&nbsp;€</span><a class="btn" href="seminararbeit-profi.html">Ansehen</a></div>
+      </article>
+      <article class="card">
+        <p><span class="badge soft">Für Verkäufer</span></p>
+        <h3>Anzeigen-Profi</h3>
+        <p>Du schickst Fotos von dem, was weg soll. Zurück kommen Preis-Check, fertiger Text und Antworten auf Käuferfragen für Kleinanzeigen oder Vinted.</p>
+        <ul class="small"><li>Drei Preise mit Vergleichswerten</li><li>Titel und Text zum Kopieren</li><li>Antworten auf „Letzter Preis?“</li></ul>
+        <div class="foot"><span class="price">9,90&nbsp;€</span><a class="btn" href="anzeigen-profi.html">Ansehen</a></div>
+      </article>
     </div>
-    <div class="cta2"><span class="price">9,90&nbsp;€</span><a class="btn " href="https://www.checkout-ds24.com/product/757063" rel="noopener" target="_blank">Für 9,90 € kaufen</a><span class="small">Sicher bezahlen über Digistore24</span></div>
   </section>
 
-  <section class="wrap" aria-labelledby="so">
-    <h2 id="so">So läuft's</h2>
+  <section class="wrap" id="wie" aria-labelledby="wie-h">
+    <h2 id="wie-h">So funktioniert ein Skill</h2>
     <ol class="steps">
-      <li><div><b>Kaufen</b><span>Bezahlen über Digistore24, Download kommt sofort.</span></div></li>
-      <li><div><b>Hochladen</b><span>In Claude unter Anpassen → Skills die ZIP-Datei hochladen.</span></div></li>
-      <li><div><b>Fotos schicken</b><span>Neuer Chat, Fotos rein, „will ich verkaufen“ – fertig.</span></div></li>
+      <li><div><b>Kaufen</b><span>Bezahlen über Digistore24. Du bekommst sofort eine ZIP-Datei und eine Anleitung.</span></div></li>
+      <li><div><b>Einmal hochladen</b><span>Auf claude.ai unter Anpassen → Skills. Das dauert etwa zwei Minuten.</span></div></li>
+      <li><div><b>Einfach loslegen</b><span>In jedem neuen Chat erkennt Claude die Aufgabe und nutzt den Skill von selbst.</span></div></li>
     </ol>
   </section>
 
-  <section class="wrap narrow" aria-labelledby="vertrauen">
-    <h2 id="vertrauen" class="sr">Wer dahintersteckt</h2>
-    <div class="trust">
-      <img src="hamster.png" alt="">
-      <div>
-        <p><b>Du klickst am Ende selbst.</b> Der Anzeigen-Profi stellt nichts automatisch ein. Du kopierst die Anzeige und stellst sie selbst online – so bleibt dein Kleinanzeigen- oder Vinted-Konto sicher.</p>
-        <p class="small">Gemacht von Jona aus Wolnzach. Hängst du beim Einrichten? Schreib an bartenbach.jona@gmail.com, ich helfe persönlich.</p>
-      </div>
+  <section class="wrap" aria-labelledby="warum">
+    <h2 id="warum">Warum Hamsterfrei</h2>
+    <div class="why">
+      <div><b>Kostenloses Claude reicht</b><span>Alle Skills laufen ohne Abo. Du brauchst nur eine Einstellung.</span></div>
+      <div><b>Wenig Fragen</b><span>Claude fragt nur das Nötigste, gebündelt und mit Empfehlung.</span></div>
+      <div><b>Ehrlich</b><span>Keine erfundenen Zahlen, keine Versprechen. Am Ende klickst du selbst.</span></div>
+      <div><b>Persönliche Hilfe</b><span>Hängst du beim Einrichten? Schreib Jona, er antwortet selbst.</span></div>
     </div>
   </section>
 
   <section class="wrap narrow" aria-labelledby="faq">
     <h2 id="faq">Fragen</h2>
-    <details><summary>Was ist ein Skill?</summary><p>Eine kleine Anleitung für Claude, die du einmal hochlädst. Danach weiß Claude in jedem neuen Chat, wie es aus deinen Fotos eine gute Anzeige macht – du musst nichts mehr erklären.</p></details>
-    <details><summary>Bekomme ich garantiert den Preis?</summary><p>Nein. Du bekommst eine realistische Preis-Empfehlung mit Vergleichswerten. Ob und wann jemand kauft, hängt vom Markt ab.</p></details>
-    <details><summary>Kann ich den Kauf widerrufen?</summary><p>Bei digitalen Inhalten erlischt das Widerrufsrecht, sobald du im Bestellformular dem sofortigen Download zustimmst. Wenn etwas beim Einrichten nicht klappt, schreib mir – ich helfe.</p></details>
-    <details><summary>Ist das ein offizielles Produkt von Claude?</summary><p>Nein. Hamsterfrei ist ein unabhängiges Angebot und nicht mit Anthropic, Kleinanzeigen oder Vinted verbunden.</p></details>
+    <details><summary>Was ist Claude?</summary><p>Claude ist ein KI-Assistent von Anthropic, ähnlich wie ChatGPT. Du nutzt ihn auf claude.ai oder in der App. Ein kostenloses Konto genügt für unsere Skills.</p></details>
+    <details><summary>Was genau ist ein Skill?</summary><p>Ein Ordner mit Anleitungen und kleinen Werkzeugen, den du in dein Claude-Konto lädst. Claude liest ihn, sobald er passt, und arbeitet dann nach einem erprobten Ablauf.</p></details>
+    <details><summary>Wie bezahle ich?</summary><p>Über Digistore24, zum Beispiel mit PayPal oder Karte. Digistore24 ist dein Vertragspartner und schickt dir den Download-Link sofort.</p></details>
+    <details><summary>Ist das ein offizielles Produkt von Claude?</summary><p>Nein. Hamsterfrei ist ein unabhängiges Angebot und nicht mit Anthropic verbunden.</p></details>
   </section>
 </main>
 
 <footer class="wrap">
-  <nav aria-label="Rechtliches"><a href="impressum.html">Impressum</a><a href="datenschutz.html">Datenschutz</a><a href="kaufbedingungen.html">Kaufbedingungen</a></nav>
-  <p>© 2026 Hamsterfrei · Weitere Skills sind in Arbeit – folg dem Hamster auf <a href="https://www.tiktok.com/@hamsterfrei" rel="noopener" target="_blank">TikTok</a>, <a href="https://www.instagram.com/hamsterfrei/" rel="noopener" target="_blank">Instagram</a> und <a href="https://www.youtube.com/channel/UCBmT3RjRK5PGk-YVTdFzuDA" rel="noopener" target="_blank">YouTube</a>. Claude ist eine Marke von Anthropic; Hamsterfrei ist nicht mit Anthropic verbunden.</p>
+  <nav aria-label="Rechtliches"><a href="index.html">Alle Skills</a><a href="impressum.html">Impressum</a><a href="datenschutz.html">Datenschutz</a><a href="kaufbedingungen.html">Kaufbedingungen</a></nav>
+  <p>© 2026 Hamsterfrei · Folg dem Hamster auf <a href="https://www.tiktok.com/@hamsterfrei" rel="noopener" target="_blank">TikTok</a>, <a href="https://www.instagram.com/hamsterfrei/" rel="noopener" target="_blank">Instagram</a> und <a href="https://www.youtube.com/channel/UCBmT3RjRK5PGk-YVTdFzuDA" rel="noopener" target="_blank">YouTube</a>. Claude ist eine Marke von Anthropic; Hamsterfrei ist nicht mit Anthropic verbunden.</p>
 </footer>
-
-<div class="bar" id="bar" aria-hidden="true"><span class="price">9,90&nbsp;€</span><a class="btn " href="https://www.checkout-ds24.com/product/757063" tabindex="-1" rel="noopener" target="_blank">Für 9,90 € kaufen</a></div>
-<style>.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}</style>
-<script>
-(function(){
-  var bar=document.getElementById('bar'), box=document.getElementById('kaufen');
-  if(!('IntersectionObserver' in window)||!bar||!box) return;
-  new IntersectionObserver(function(e){ bar.classList.toggle('show', !e[0].isIntersecting && e[0].boundingClientRect.top<0); }).observe(box);
-})();
-</script>
-
 </body>
 </html>
